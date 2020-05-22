@@ -1,5 +1,8 @@
 package shelter;
 
+import java.util.Map;
+import java.util.Map.Entry;
+
 public class VirtualPetShelterDisplay {
 
     public static void initialInstructions(){
@@ -16,8 +19,14 @@ public class VirtualPetShelterDisplay {
         System.out.println("press 6 to admit a new pet to the shelter");
     }
 
-    public static void displayPetStatus(){
-        System.out.println("this is where all the info will go when I get around to programming it");
+    public static void displayPetStatus(VirtualPet thisPet){
+        System.out.println(thisPet.getPetName() + "--------");
+        System.out.println(thisPet.getPetDescription());
+        System.out.println();
+        System.out.println("HUNGER: " + thisPet.getPetHunger());
+        System.out.println("THIRST: " + thisPet.getPetThirst() );
+        System.out.println("BOREDOM: " + thisPet.getPetBoredom());
+        System.out.println();
     }
     public static void displayEntertainOnePet(String petName){
         System.out.println("you entertained " + petName + " somehow");

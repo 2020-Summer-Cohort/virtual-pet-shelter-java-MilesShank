@@ -1,5 +1,6 @@
 package shelter;
 
+import java.util.Map;
 import java.util.Scanner;
 
 public class VirtualPetShelterApp {
@@ -30,7 +31,13 @@ public class VirtualPetShelterApp {
 
     public static void determineAction(int userCommand){
         switch(userCommand){
-            case 0: VirtualPetShelterDisplay.displayPetStatus();
+
+            case 0:
+            for(Map.Entry<String, VirtualPet> entry: myShelter.petShelter.entrySet()){
+                VirtualPet thisPet = entry.getValue();
+                VirtualPetShelterDisplay.displayPetStatus(thisPet);
+
+            }
                 break;
 
             case 1:
