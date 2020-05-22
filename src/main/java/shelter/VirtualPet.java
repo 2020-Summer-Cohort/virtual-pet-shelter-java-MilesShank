@@ -44,6 +44,7 @@ public class VirtualPet {
     }
 
     public void updatePetBoredom(int numberToAdd){
+        petBoredom = petBoredom + numberToAdd;
 
     }
 }

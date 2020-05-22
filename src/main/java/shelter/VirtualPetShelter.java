@@ -5,45 +5,52 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class VirtualPetShelter {
-    Map <String,String> petShelter = new HashMap<>();
-
-    public Collection getAllPets() {
-        return null;
-
-    }
+    Map <String,String> petData = new HashMap<>();
+    Map <String,VirtualPet> petShelter = new HashMap<>();
 
     public Map getPetShelter() {
         return petShelter;
     }
+    public Collection getAllPets() {
+        Collection<VirtualPet> allPets = petShelter.values();
+        return allPets;
+
+    }
+
+    public Map getPetData() {
+        return petData;
+    }
 
     public VirtualPet getPet(String petName) {
-        return null;
+        return petShelter.get(petName);
     }
 
     public void addNewPet(String newPetName, String newPetDescription) {
-        petShelter.put(newPetName,newPetDescription);
+        petData.put(newPetName,newPetDescription);
+       VirtualPet newPet = new VirtualPet(newPetName,newPetDescription);
+        petShelter.put(newPetName,newPet);
     }
 
     public void adoptOutPet(String adoptedPet) {
-        petShelter.remove(adoptedPet);
+        petData.remove(adoptedPet);
     }
 
     public void feedAllPets() {
-        for(Map.Entry<String, String> entry : petShelter.entrySet()){
+        for(Map.Entry<String, String> entry : petData.entrySet()){
             VirtualPet needyPet = getPet(entry.getKey());
             needyPet.updatePetHunger(2);
         }
     }
 
     public void waterAllPets() {
-        for(Map.Entry<String, String> entry : petShelter.entrySet()){
+        for(Map.Entry<String, String> entry : petData.entrySet()){
             VirtualPet needyPet = getPet(entry.getKey());
             needyPet.updatePetThirst(2);
         }
     }
 
     public void entertainAllPets(){
-        for(Map.Entry<String, String> entry : petShelter.entrySet()){
+        for(Map.Entry<String, String> entry : petData.entrySet()){
             VirtualPet needyPet = getPet(entry.getKey());
             needyPet.updatePetBoredom(2);
         }
@@ -56,12 +63,13 @@ public class VirtualPetShelter {
 
 
     public void tick() {
-        for(Map.Entry<String, String> entry : petShelter.entrySet()){
+        for(Map.Entry<String, String> entry : petData.entrySet()){
             VirtualPet needyPet = getPet(entry.getKey());
             needyPet.updatePetHunger(-1);
             needyPet.updatePetThirst(-1);
             needyPet.updatePetBoredom(-1);
         }
     }
+
 
 }
