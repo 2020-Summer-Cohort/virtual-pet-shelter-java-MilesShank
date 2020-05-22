@@ -8,9 +8,14 @@ public class VirtualPetShelterApp {
 
 
     public static void main (String[] args){
-        Scanner input = new Scanner(System.in);
+      Scanner input = new Scanner(System.in);
         shelterSetup();
-        initialInstructions();
+        VirtualPetShelterDisplay.initialInstructions();
+        VirtualPetShelterDisplay.mainMenu();
+        while(true){
+            int userCommand = input.nextInt();
+            gameLoop(userCommand);
+        }
 
 
     }
@@ -23,51 +28,94 @@ public class VirtualPetShelterApp {
         myShelter.addNewPet(bigOlBuster.getPetName(),bigOlBuster.getPetDescription());
     }
 
-    public static void initialInstructions(){
-        System.out.println("here's where the instructions are gunna go when I feel like typing them all out");
+    public static void determineAction(int userCommand){
+        switch(userCommand){
+            case 0: VirtualPetShelterDisplay.displayPetStatus();
+                break;
 
+            case 1:
+                feedPets();
+                VirtualPetShelterDisplay.displayFeedPets();
+                gameLoop();
+                break;
+
+            case 2:;
+                waterPets();
+                VirtualPetShelterDisplay.displayWaterPets();
+                gameLoop();
+                break;
+
+            case 3:
+                entertainPets();
+                VirtualPetShelterDisplay.displayEntertainPets();
+                gameLoop();
+                break;
+
+            case 4:
+                VirtualPetShelterDisplay.displaySelectPet();
+                String petToEntertain = getUserInput();
+                entertainOnePet(petToEntertain);
+                VirtualPetShelterDisplay.displayEntertainOnePet(petToEntertain);
+                gameLoop();
+                break;
+
+            case 5:
+                VirtualPetShelterDisplay.displayAdoptionPrompt();
+                String adoptedPet = getUserInput();
+                adoptPet(adoptedPet);
+                VirtualPetShelterDisplay.displayAdoptPet(adoptedPet);
+                break;
+
+            case 6:;
+                VirtualPetShelterDisplay.displayNewPetNamePrompt();
+                String newPetName = getUserInput();
+                VirtualPetShelterDisplay.displayNewPetDescriptionPrompt();
+                String newPetDescription = getUserInput();
+                admitPet(newPetName,newPetDescription);
+                VirtualPetShelterDisplay.displayAdmitPet(newPetName);
+                break;
+            default: VirtualPetShelterDisplay.userCommandError();
+                break;
+        }
+        VirtualPetShelterDisplay.mainMenu();
     }
 
-    public static void gameLoop(String userInput){
+    private static String getUserInput() {
+        Scanner input = new Scanner(System.in);
+        return input.nextLine();
+    }
+
+    public static void gameLoop(){
+
        myShelter.tick();
     }
 
     public static void gameLoop(int userInput){
-        myShelter.tick();
+        determineAction(userInput);
+        //  myShelter.tick();
     }
-  //  public static void displayFeedPets(){
-  //      System.out.println("you fed the pets");
-  //  }
+
     public static void feedPets(){
         myShelter.feedAllPets();
     }
 
-   // public static void displayWaterPets(){
-  //      System.out.println("you watered the pets. like plants.");
-  //  }
+
 
     public static void waterPets(){
         myShelter.waterAllPets();
     }
- //   public static void displayEntertainPets(){
-  //      System.out.println("you entertained the pets. are they laughing with you or at you?");
- //   }
 
     public static void entertainPets(){
         myShelter.entertainAllPets();
     }
 
- //   public static void displayEntertainOnePet(String petName){
-  //      System.out.println("you entertained " + petName + " somehow");
-   // }
-    public static void entertainOnePet(String petName){
-        myShelter.entertainOnePet(petName);
+
+    public static void entertainOnePet(String petToEntertain){
+        myShelter.entertainOnePet(petToEntertain);
     }
-//    public static void displayAdoptPet(String petName){
- //       System.out.println("Looks like " + petName + " found their forever home. neat.");
- //   }
-    public static void adoptPet(String petName){
-        myShelter.adoptOutPet(petName);
+
+    public static void adoptPet(String petToAdopt){
+        myShelter.adoptOutPet(petToAdopt);
     }
     public static void admitPet(String petName,String petDescription){
         VirtualPet newPet = new VirtualPet(petName, petDescription);

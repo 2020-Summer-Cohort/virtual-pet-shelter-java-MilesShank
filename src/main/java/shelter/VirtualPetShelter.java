@@ -44,30 +44,30 @@ public class VirtualPetShelter {
 
     public void waterAllPets() {
         for(Map.Entry<String, String> entry : petData.entrySet()){
-            VirtualPet needyPet = getPet(entry.getKey());
-            needyPet.updatePetThirst(2);
+            VirtualPet thirstyPet = getPet(entry.getKey());
+            thirstyPet.updatePetThirst(2);
         }
     }
 
     public void entertainAllPets(){
         for(Map.Entry<String, String> entry : petData.entrySet()){
-            VirtualPet needyPet = getPet(entry.getKey());
-            needyPet.updatePetBoredom(2);
+            VirtualPet boredPets = getPet(entry.getKey());
+            boredPets.updatePetBoredom(2);
         }
     }
 
     public void entertainOnePet(String petName) {
-        VirtualPet needyPet = getPet(petName);
-        needyPet.updatePetBoredom(3);
+        VirtualPet boredPet = getPet(petName);
+        boredPet.updatePetBoredom(3);
     }
 
 
     public void tick() {
         for(Map.Entry<String, String> entry : petData.entrySet()){
-            VirtualPet needyPet = getPet(entry.getKey());
-            needyPet.updatePetHunger(-1);
-            needyPet.updatePetThirst(-1);
-            needyPet.updatePetBoredom(-1);
+            VirtualPet hungryPet = getPet(entry.getKey());
+            hungryPet.updatePetHunger(-1);
+            hungryPet.updatePetThirst(-1);
+            hungryPet.updatePetBoredom(-1);
         }
     }
 
