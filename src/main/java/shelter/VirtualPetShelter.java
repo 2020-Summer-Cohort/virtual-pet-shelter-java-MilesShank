@@ -32,7 +32,7 @@ public class VirtualPetShelter {
     }
 
     public void adoptOutPet(String adoptedPet) {
-        petData.remove(adoptedPet);
+        petData.remove(adoptedPet); petShelter.remove(adoptedPet);
     }
 
     public void feedAllPets() {

@@ -99,14 +99,11 @@ public class VirtualPetShelterApp {
 
     public static void gameLoop(int userInput){
         determineAction(userInput);
-        //  myShelter.tick();
     }
 
     public static void feedPets(){
         myShelter.feedAllPets();
     }
-
-
 
     public static void waterPets(){
         myShelter.waterAllPets();
@@ -115,7 +112,6 @@ public class VirtualPetShelterApp {
     public static void entertainPets(){
         myShelter.entertainAllPets();
     }
-
 
     public static void entertainOnePet(String petToEntertain){
         myShelter.entertainOnePet(petToEntertain);
